@@ -1,5 +1,7 @@
 package com.qingxi.aicoderhelper.ai;
 
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import jakarta.annotation.Resource;
@@ -14,6 +16,11 @@ public class AiCoderHelperServiceFactory {
 
     @Bean
     public AiCoderHelperService aiCoderHelperService() {
-        return AiServices.create(AiCoderHelperService.class, ollamaChatModel);
+
+        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        return AiServices.builder(AiCoderHelperService.class)
+                .chatModel(ollamaChatModel)
+                .chatMemory(chatMemory)
+                .build();
     }
 }
