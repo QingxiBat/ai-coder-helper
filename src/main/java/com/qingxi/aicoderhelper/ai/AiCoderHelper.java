@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class AiCoderHelper {
 
     @Resource
-    private ChatModel ollama_chat_model;
+    private ChatModel ollamaChatModel;
 
     private static final String SYSTEM_MESSAGE = """
             你是编程领域的小助手，帮助用户解答编程学习和求职面试相关的问题，并给出建议。重点关注4个方向：
@@ -27,20 +27,20 @@ public class AiCoderHelper {
 
     // 简单对话，仅支持传入文本
     public String chat(String message) {
-        SystemMessage system_message = SystemMessage.from(SYSTEM_MESSAGE);
-        UserMessage user_message = UserMessage.from(message);
-        ChatResponse chat_response = ollama_chat_model.chat(system_message, user_message);
-        AiMessage ai_message = chat_response.aiMessage();
-        log.info("AI输出：" + ai_message.toString());
-        return ai_message.text();
+        SystemMessage systemMessage = SystemMessage.from(SYSTEM_MESSAGE);
+        UserMessage userMessage = UserMessage.from(message);
+        ChatResponse chatResponse = ollamaChatModel.chat(systemMessage, userMessage);
+        AiMessage aiMessage = chatResponse.aiMessage();
+        log.info("AI输出：" + aiMessage.toString());
+        return aiMessage.text();
     }
 
     // 简单对话，支持传入多种格式
-    public String chat_with_multi_massage(UserMessage user_message) {
-        ChatResponse chat_response = ollama_chat_model.chat(user_message);
-        AiMessage ai_message = chat_response.aiMessage();
-        log.info("AI输出：" + ai_message.toString());
-        return ai_message.text();
+    public String chatWithMultiMessage(UserMessage user_message) {
+        ChatResponse chatResponse = ollamaChatModel.chat(user_message);
+        AiMessage aiMessage = chatResponse.aiMessage();
+        log.info("AI输出：" + aiMessage.toString());
+        return aiMessage.text();
     }
 
 }

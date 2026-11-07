@@ -17,25 +17,25 @@ import java.util.Base64;
 class AiCoderHelperApplicationTests {
 
     @Resource
-    private AiCoderHelper ai_coder_helper;
+    private AiCoderHelper aiCoderHelper;
 
     @Test
     void chat() {
-        ai_coder_helper.chat("你好");
+        aiCoderHelper.chat("你好");
     }
 
     @Test
-    void chat_with_multi_message() throws IOException {
+    void chatWithMultiMessage() throws IOException {
         Path img = Path.of("data/img/1.jpg");
         byte[] bytes = Files.readAllBytes(img);
-        String img_base64 = Base64.getEncoder().encodeToString(bytes);
+        String imgBase64 = Base64.getEncoder().encodeToString(bytes);
 
-        UserMessage user_message = UserMessage.from(
+        UserMessage userMessage = UserMessage.from(
                 TextContent.from("描述图片"),
-                ImageContent.from(img_base64, "image/jpeg")
+                ImageContent.from(imgBase64, "image/jpeg")
         );
 
-        ai_coder_helper.chat_with_multi_massage(user_message);
+        aiCoderHelper.chatWithMultiMessage(userMessage);
     }
 
 }

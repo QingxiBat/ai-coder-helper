@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 public class AiCoderHelperServiceFactory {
 
     @Resource
-    private ChatModel ollama_chat_model;
+    private ChatModel ollamaChatModel;
 
     @Bean
-    public AiCoderHelperService ai_coder_helper_service() {
-        return AiServices.create(AiCoderHelperService.class, ollama_chat_model);
+    public AiCoderHelperService aiCoderHelperService() {
+        return AiServices.create(AiCoderHelperService.class, ollamaChatModel);
     }
 }

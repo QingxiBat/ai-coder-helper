@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AiCoderHelperServiceTest {
 
     @Resource
-    private AiCoderHelperService ai_coder_helper_service;
+    private AiCoderHelperService aiCoderHelperService;
 
     @Test
     void chat() {
-        String result = ai_coder_helper_service.chat("你好");
+        String result = aiCoderHelperService.chat("你好");
         System.out.println(result);
     }
 }
